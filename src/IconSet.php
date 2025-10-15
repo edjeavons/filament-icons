@@ -292,37 +292,26 @@ abstract class IconSet implements Plugin
     private function findIconWithStyle(mixed $iconCase, mixed $targetStyle): ?object
     {
         // Check if the target style is available for this icon set
-        if (!$this->hasStyle($targetStyle)) {
-            // dd($targetStyle);
-
+        if (! $this->hasStyle($targetStyle)) {
             return null;
         }
 
         $baseName = $this->extractBaseName($iconCase);
         $targetSuffix = $targetStyle->getEnumSuffix();
-//        dd($targetSuffix);
 
         // Determine whether the suffix is prefix or postfix
         if (str_ends_with($this->currentStyle->value, '-')) {
             // e.g., "Bold" + "Search" => "BoldSearch"
-            $targetCaseName = $targetSuffix . $baseName;
+            $targetCaseName = $targetSuffix.$baseName;
         } elseif (str_starts_with($this->currentStyle->value, '-')) {
             // e.g., "Search" + "Bold" => "SearchBold"
-            $targetCaseName = $baseName . $targetSuffix;
+            $targetCaseName = $baseName.$targetSuffix;
         } else {
             // fallback if suffix has no dash e.g., "Search" + "Bold" => "SearchBold"
-            $targetCaseName = $baseName . $targetSuffix;
+            $targetCaseName = $baseName.$targetSuffix;
         }
 
         $enumClass = $this->getIconEnum();
-
-        // dd(
-        //     $iconCase,
-        //     $baseName,
-        //     $targetSuffix,
-        //     $targetCaseName,
-        //     $enumClass
-        // );
 
         // Try to find the case with the target style
         foreach ($enumClass::cases() as $case) {
@@ -340,22 +329,19 @@ abstract class IconSet implements Plugin
     private function extractBaseName(mixed $iconCase): string
     {
         $caseName = $iconCase->name;
-        if (!$this->styleEnum) {
+        if (! $this->styleEnum) {
             return $caseName;
         }
 
         // Use available style suffixes from the style enum
         foreach ($this->styleEnum::cases() as $style) {
-//            dd($style);
             $styleSuffix = $style->getEnumSuffix();
 
             if (str_ends_with($style->value, '-') && str_starts_with($caseName, $styleSuffix)) {
-//                dd(substr($caseName, strlen($styleSuffix)));
                 return substr($caseName, strlen($styleSuffix));
             }
 
             if (str_ends_with($caseName, $styleSuffix)) {
-//                dd(substr($caseName, 0, -strlen($styleSuffix)));
                 return substr($caseName, 0, -strlen($styleSuffix));
             }
         }
