@@ -19,12 +19,15 @@ The following icon sets are available as separate packages that work with this c
 - [Font Awesome](https://github.com/filafly/filament-font-awesome-icons)
 - [Iconoir](https://github.com/filafly/filament-iconoir-icons)
 - [Carbon](https://github.com/filafly/filament-carbon-icons)
+- [Hugeicons](https://github.com/filafly/filament-hugeicons-icons)
 
 ## Community Implementations
-- (none yet...)
+- [Solar](https://github.com/W84T/filament-solar-icons) by [W84T](https://github.com/W84T)
 
 # Creating Your Own Icon Set
-This package allows you to create your own icon set implementations, enabling you to integrate any icon library that has a Blade Icons implementation with Filament. Here's how to get started:
+The best and most straightforward way to create your own set is by using the [Filament Icons Template repository](https://github.com/filafly/filament-icons-template). Just click "use this template" and follow the instructions on the page.
+
+If you want to create your own implementation manually, this package enables you to integrate any icon library that has a Blade Icons implementation with Filament. Here's how to get started:
 
 ## Requirements
 - An icon set with a [Blade Icons](https://github.com/blade-ui-kit/blade-icons) implementation. If one doesn't exist, you'll need to create it.
